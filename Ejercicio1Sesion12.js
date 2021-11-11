@@ -1,7 +1,6 @@
 // Crear escena, crear objetos, camaras y luces.
 var scene = new THREE.Scene();
 var dim =  x,y,z;
-var dim = new dim (10,10,10);
 var angulo = Math.PI/2;
 var pos = 0.5;
 var lado = 1;
@@ -31,7 +30,7 @@ function init() {
     var camera = new THREE.PerspectiveCamera(20, window.innerWidth / window.innerHeight, 0.1, 1000);
 
     // Posicion de la camara
-    camera.position.set(-10, 8, 20);
+    camera.position.set(-30, 10, 25);
     camera.lookAt(scene.position);
 
     // Crear render
@@ -71,6 +70,7 @@ function init() {
      Cubo[1].translateY ( 1.4 ); // movimiento e en el eje Y = 1.5
      Cubo[1].translateZ ( 0.5 ); // movimiento  en el eje Z
      Cubo[1].scale.set(0.75,0.75,0.75);
+     Cubo[1].rotateY(45); //rotar cubo 45 grados 
     scene.add(Cubo[1]);
 
     //Cubo Azul
@@ -80,24 +80,6 @@ function init() {
     Cubo[2].scale.set(0.5,0.5,0.5);
     scene.add(Cubo[2]);
 
-    for(i=0;i<3;i++){
-        cubo[i].translateX(dim/2);
-        cubo[i].translateY(dim/2);
-        cubo[i].translateZ(dim/2);
-    }
-
-    //Transformaciones de escalado y translacion final sobre el eje y
-    for(i=0;i<3;i++){
-        if(i==1 || i==2){
-            escala=1/(2*i);//Escala a la mitad del cubo anterior
-            unidades=dim/2+dim/4+((dim/2+dim/4)/2)*(i-1);
-            cubo[i].scale.set(escala, escala,escala);
-            cubo[i].translateY(unidades);
-        }
-    }
-    //rotacion de los cubos 1 y 3
-    cubo[0].rotateY(angulo);
-    cubo[2].rotateY(angulo);
 
 
     // add the output of the renderer to the html element
